@@ -42,10 +42,10 @@ const projects: Project[] = [
 ]
 
 const projectRefs = ref<HTMLElement[]>([])
-const imageRefs = ref<HTMLElement[]>([])
+
 
 onMounted(() => {
-  projectRefs.value.forEach((project, index) => {
+  projectRefs.value.forEach((project) => {
     // Project content reveal
     gsap.fromTo(project.querySelector('.project-content'),
       { opacity: 0, y: 80, filter: 'blur(10px)' },

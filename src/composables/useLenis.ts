@@ -1,5 +1,5 @@
 import Lenis from 'lenis'
-import { onMounted, onUnmounted } from 'vue'
+
 
 let lenis: Lenis | null = null
 

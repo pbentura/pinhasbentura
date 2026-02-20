@@ -9,7 +9,7 @@ import SkillsSection from './components/SkillsSection.vue'
 import ContactSection from './components/ContactSection.vue'
 
 const { initLenis, destroyLenis } = useLenis()
-const { theme, resolvedTheme, setTheme, toggleTheme } = useTheme()
+const { theme, resolvedTheme, setTheme } = useTheme()
 
 onMounted(() => {
   initLenis()
