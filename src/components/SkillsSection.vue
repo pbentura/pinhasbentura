@@ -9,16 +9,18 @@ const sectionRef = ref<HTMLElement | null>(null)
 const skillRefs = ref<HTMLElement[]>([])
 
 const skills = [
-  { text: 'Vue.js', x: 15, y: 20, size: 'lg' },
-  { text: 'TypeScript', x: 70, y: 15, size: 'md' },
-  { text: 'Design', x: 25, y: 45, size: 'xl' },
-  { text: 'Animation', x: 65, y: 50, size: 'lg' },
-  { text: 'GSAP', x: 80, y: 35, size: 'md' },
-  { text: 'UX', x: 10, y: 60, size: 'xl' },
-  { text: 'Performance', x: 55, y: 75, size: 'md' },
-  { text: 'Accessibilité', x: 30, y: 80, size: 'sm' },
-  { text: 'Créativité', x: 75, y: 65, size: 'lg' },
-  { text: 'Figma', x: 45, y: 30, size: 'sm' },
+  { text: 'Symfony', x: 15, y: 20, size: 'lg' },
+  { text: 'FastAPI', x: 70, y: 15, size: 'md' },
+  { text: 'Vue.js', x: 25, y: 45, size: 'xl' },
+  { text: 'Docker', x: 65, y: 50, size: 'lg' },
+  { text: 'CI/CD', x: 80, y: 35, size: 'md' },
+  { text: 'Automatisation', x: 10, y: 60, size: 'md' },
+  { text: 'Architecture', x: 55, y: 75, size: 'lg' },
+  { text: 'APIs', x: 30, y: 80, size: 'xl' },
+  { text: 'Performance', x: 75, y: 65, size: 'md' },
+  { text: 'SEO', x: 45, y: 30, size: 'sm' },
+  { text: 'Maintenabilité', x: 5, y: 35, size: 'sm' },
+  { text: 'Base de données', x: 50, y: 60, size: 'sm' },
 ]
 
 onMounted(() => {

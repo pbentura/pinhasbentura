@@ -63,14 +63,14 @@ onMounted(() => {
         ref="titleRef"
         class="text-display-xl font-light text-text-primary mb-8 will-change-transform"
       >
-        Créateur d'expériences
+        Pinhas Bentura
       </h1>
       
       <p 
         ref="subtitleRef"
         class="text-body-lg text-text-secondary font-light tracking-wide opacity-0"
       >
-        Développeur créatif & designer interactif
+        Développeur créatif
       </p>
     </div>
 

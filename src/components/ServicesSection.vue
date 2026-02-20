@@ -9,9 +9,10 @@ const sectionRef = ref<HTMLElement | null>(null)
 const phrasesRef = ref<HTMLElement[]>([])
 
 const phrases = [
-  'Design d\'interfaces intuitives',
-  'Applications web performantes',
-  'Expériences interactives mémorables',
+  "Je conçois des applications réellement utilisées",
+  "Je simplifie les interfaces pour aller à l’essentiel",
+  "Je rends les systèmes fiables et maintenables",
+  "J’automatise ce qui ne devrait plus être fait à la main",
 ]
 
 onMounted(() => {
