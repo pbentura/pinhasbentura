@@ -78,7 +78,7 @@ onMounted(() => {
 
       <div class="mt-24 flex flex-col gap-4 text-caption text-text-muted">
         <a 
-          href="https://github.com" 
+          href="https://github.com/pbentura"
           target="_blank" 
           rel="noopener"
           class="hover:text-text-primary transition-colors duration-500"
@@ -86,7 +86,7 @@ onMounted(() => {
           GitHub
         </a>
         <a 
-          href="https://linkedin.com" 
+          href="https://www.linkedin.com/in/pinhas-bentura"
           target="_blank" 
           rel="noopener"
           class="hover:text-text-primary transition-colors duration-500"
@@ -94,12 +94,12 @@ onMounted(() => {
           LinkedIn
         </a>
         <a 
-          href="https://twitter.com" 
+          href="https://wa.me/33782759759"
           target="_blank" 
           rel="noopener"
           class="hover:text-text-primary transition-colors duration-500"
         >
-          Twitter
+          Whatsapp
         </a>
       </div>
     </div>

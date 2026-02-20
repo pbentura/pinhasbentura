@@ -9,18 +9,19 @@ const sectionRef = ref<HTMLElement | null>(null)
 const skillRefs = ref<HTMLElement[]>([])
 
 const skills = [
-  { text: 'Symfony', x: 15, y: 20, size: 'lg' },
-  { text: 'FastAPI', x: 70, y: 15, size: 'md' },
-  { text: 'Vue.js', x: 25, y: 45, size: 'xl' },
-  { text: 'Docker', x: 65, y: 50, size: 'lg' },
-  { text: 'CI/CD', x: 80, y: 35, size: 'md' },
-  { text: 'Automatisation', x: 10, y: 60, size: 'md' },
-  { text: 'Architecture', x: 55, y: 75, size: 'lg' },
-  { text: 'APIs', x: 30, y: 80, size: 'xl' },
-  { text: 'Performance', x: 75, y: 65, size: 'md' },
-  { text: 'SEO', x: 45, y: 30, size: 'sm' },
+  { text: 'Vue.js', x: 15, y: 20, size: 'xl' },
+  { text: 'APIs', x: 70, y: 25, size: 'xl' },
+  { text: 'Architecture', x: 35, y: 55, size: 'lg' },
+  { text: 'Symfony', x: 60, y: 40, size: 'lg' },
+  { text: 'React', x: 25, y: 35, size: 'lg' },
+  { text: 'Docker', x: 75, y: 55, size: 'md' },
+  { text: 'CI/CD', x: 85, y: 15, size: 'md' },
+  { text: 'Automatisation', x: 10, y: 70, size: 'md' },
+  { text: 'n8n', x: 50, y: 10, size: 'md' }, // ajouté en haut centre
+  { text: 'FastAPI', x: 50, y: 20, size: 'md' },
+  { text: 'SEO', x: 25, y: 50, size: 'sm' },
   { text: 'Maintenabilité', x: 5, y: 35, size: 'sm' },
-  { text: 'Base de données', x: 50, y: 60, size: 'sm' },
+  { text: 'Base de données', x: 50, y: 80, size: 'sm' },
 ]
 
 onMounted(() => {
