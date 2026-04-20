@@ -69,6 +69,7 @@ onMounted(() => {
         href="mailto:hello@example.com"
         class="group relative inline-flex items-center justify-center px-16 py-6 
                bg-text-primary text-bg-primary text-body font-medium
+               rounded-full
                transition-all duration-700 ease-premium
                hover:scale-[1.03] hover:opacity-90
                opacity-0"
