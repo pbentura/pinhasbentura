@@ -17,11 +17,11 @@ interface Project {
 const projects: Project[] = [
   {
     id: 1,
-    title: 'Aura',
-    description: 'Plateforme immersive de bien-être digital',
-    image: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1600&auto=format&fit=crop',
+    title: 'Ventura',
+    description: 'Plateforme SaaS tout-en-un pour la gestion d\'activité des artisans et TPE. Facturation et suivi client intuitif.',
+    image: '/projects/ventura.png',
     year: '2024',
-    link: '#project-aura',
+    link: 'https://ventura-e277f.web.app',
   },
   {
     id: 2,
