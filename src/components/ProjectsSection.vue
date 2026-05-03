@@ -2,8 +2,11 @@
 import { ref, onMounted } from 'vue'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { usePageTransition } from '../composables/usePageTransition'
 
 gsap.registerPlugin(ScrollTrigger)
+
+const { startTransition, isAnimating } = usePageTransition()
 
 interface Project {
   id: number
@@ -43,6 +46,16 @@ const projects: Project[] = [
 
 const projectRefs = ref<HTMLElement[]>([])
 
+const handleProjectClick = async (event: MouseEvent, project: Project) => {
+  if (isAnimating()) return
+
+  // Check if it's an external URL
+  if (project.link.startsWith('http') || project.link.startsWith('https')) {
+    event.preventDefault()
+    await startTransition(event, project.image, project.title, project.link)
+  }
+  // Internal anchors work normally
+}
 
 onMounted(() => {
   projectRefs.value.forEach((project) => {
@@ -94,7 +107,11 @@ onMounted(() => {
       class="relative min-h-screen w-full flex items-center py-24"
     >
       <div class="w-full max-w-7xl mx-auto px-6 md:px-12">
-      <a :href="project.link" class="block">
+      <a 
+        :href="project.link" 
+        class="block cursor-pointer"
+        @click="(e) => handleProjectClick(e, project)"
+      >
         <div 
           class="bg-bg-secondary rounded-3xl overflow-hidden border border-text-muted/20 transition-all duration-700 hover:scale-105 hover:shadow-2xl hover:shadow-text-muted/10"
         >
