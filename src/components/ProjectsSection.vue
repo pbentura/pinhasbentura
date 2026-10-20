@@ -3,6 +3,7 @@ import { ref, onMounted } from 'vue'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { usePageTransition } from '../composables/usePageTransition'
+import { ThreeDCardContainer, ThreeDCardBody, ThreeDCardItem } from './ui/ThreeDCard.vue'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -44,7 +45,7 @@ const projects: Project[] = [
   },
 ]
 
-const projectRefs = ref<HTMLElement[]>([])
+const cardRefs = ref<HTMLElement[]>([])
 
 const handleProjectClick = async (event: MouseEvent, project: Project) => {
   if (isAnimating()) return
@@ -58,110 +59,109 @@ const handleProjectClick = async (event: MouseEvent, project: Project) => {
 }
 
 onMounted(() => {
-  projectRefs.value.forEach((project) => {
-    // Project content reveal
-    gsap.fromTo(project.querySelector('.project-content'),
-      { opacity: 0, y: 80, filter: 'blur(10px)' },
+  cardRefs.value.forEach((card, index) => {
+    if (!card) return
+    gsap.fromTo(card,
+      { opacity: 0, y: 60, scale: 0.95 },
       {
         opacity: 1,
         y: 0,
-        filter: 'blur(0px)',
-        duration: 1.2,
-        ease: 'power2.out',
+        scale: 1,
+        duration: 1,
+        delay: index * 0.15,
+        ease: 'power3.out',
         scrollTrigger: {
-          trigger: project,
-          start: 'top 70%',
+          trigger: card,
+          start: 'top 85%',
           toggleActions: 'play none none reverse',
         },
       }
     )
-
-    // Image reveal
-    const image = project.querySelector('.project-image')
-    if (image) {
-      gsap.fromTo(image,
-        { scale: 1.2, opacity: 0 },
-        {
-          scale: 1,
-          opacity: 1,
-          duration: 1.4,
-          ease: 'power2.out',
-          scrollTrigger: {
-            trigger: project,
-            start: 'top 70%',
-            toggleActions: 'play none none reverse',
-          },
-        }
-      )
-    }
   })
 })
 </script>
 
 <template>
-  <section class="relative w-full">
-    <div 
-      v-for="(project, index) in projects"
-      :key="project.id"
-      :ref="(el) => { if (el) projectRefs[index] = el as HTMLElement }"
-      class="relative min-h-screen w-full flex items-center py-24"
-    >
-      <div class="w-full max-w-7xl mx-auto px-6 md:px-12">
-      <a 
-        :href="project.link" 
-        class="block cursor-pointer"
-        @click="(e) => handleProjectClick(e, project)"
-      >
-        <div 
-          class="bg-bg-secondary rounded-3xl overflow-hidden border border-text-muted/20 transition-all duration-700 hover:scale-105 hover:shadow-2xl hover:shadow-text-muted/10"
-        >
-          <div class="grid grid-cols-1 lg:grid-cols-2 items-center">
-            <!-- Image -->
-            <div 
-              class="project-image relative aspect-[4/3] lg:aspect-auto lg:h-[500px] overflow-hidden"
-              :class="index % 2 === 0 ? 'lg:order-1' : 'lg:order-2'"
-            >
-              <img 
-                :src="project.image" 
-                :alt="project.title"
-                class="w-full h-full object-cover"
-                loading="lazy"
-              />
-            </div>
+  <section class="relative w-full py-32 md:py-40">
+    <!-- Section header -->
+    <div class="max-w-7xl mx-auto px-6 md:px-12 mb-20">
+      <h2 class="text-display-lg font-light text-text-primary text-center">
+        Projets
+      </h2>
+      <p class="text-body text-text-secondary text-center mt-4 max-w-lg mx-auto">
+        Une sélection de projets récents alliant design et performance.
+      </p>
+    </div>
 
-            <!-- Content -->
-            <div 
-              class="project-content flex flex-col gap-6 p-10 lg:p-16 text-center lg:text-left"
-              :class="index % 2 === 0 ? 'lg:order-2' : 'lg:order-1 lg:text-right lg:items-end'"
-            >
-              <span class="text-caption text-text-muted">{{ project.year }}</span>
-              <h2 class="text-display-lg font-light text-text-primary">
-                {{ project.title }}
-              </h2>
-              <p class="text-body text-text-secondary max-w-md">
-                {{ project.description }}
-              </p>
-              <button 
-                class="mt-4 text-caption text-text-primary uppercase tracking-widest 
-                       hover:opacity-60 transition-opacity duration-500 
-                       flex items-center gap-3 group"
-                :class="index % 2 === 0 ? '' : 'lg:flex-row-reverse'"
-              >
-<!--                <span>Voir le projet</span>-->
-<!--                <svg -->
-<!--                  class="w-4 h-4 transform transition-transform duration-500 group-hover:translate-x-1"-->
-<!--                  :class="index % 2 === 0 ? '' : 'lg:rotate-180 lg:group-hover:-translate-x-1'"-->
-<!--                  fill="none" -->
-<!--                  viewBox="0 0 24 24" -->
-<!--                  stroke="currentColor"-->
-<!--                >-->
-<!--                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 8l4 4m0 0l-4 4m4-4H3" />-->
-<!--                </svg>-->
-              </button>
-            </div>
-          </div>
+    <!-- Cards grid -->
+    <div class="max-w-7xl mx-auto px-6 md:px-12">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div
+          v-for="(project, index) in projects"
+          :key="project.id"
+          :ref="(el) => { if (el) cardRefs[index] = el as HTMLElement }"
+        >
+          <a
+            :href="project.link"
+            class="block cursor-pointer"
+            @click="(e) => handleProjectClick(e, project)"
+          >
+            <ThreeDCardContainer container-class="w-full">
+              <ThreeDCardBody class="w-full h-auto rounded-2xl p-5 border border-text-muted/15 bg-bg-secondary group/card">
+
+                <!-- Year badge -->
+                <ThreeDCardItem
+                  :translateZ="30"
+                  class="w-full"
+                >
+                  <span class="text-caption text-text-muted tracking-widest uppercase">
+                    {{ project.year }}
+                  </span>
+                </ThreeDCardItem>
+
+                <!-- Title -->
+                <ThreeDCardItem
+                  :translateZ="50"
+                  class="mt-3 w-full"
+                >
+                  <h3 class="text-display-md font-light text-text-primary">
+                    {{ project.title }}
+                  </h3>
+                </ThreeDCardItem>
+
+                <!-- Description -->
+                <ThreeDCardItem
+                  as="p"
+                  :translateZ="40"
+                  class="text-body text-text-secondary mt-2 w-full"
+                >
+                  {{ project.description }}
+                </ThreeDCardItem>
+
+                <!-- Image -->
+                <ThreeDCardItem :translateZ="80" class="w-full mt-5">
+                  <img
+                    :src="project.image"
+                    :alt="project.title"
+                    class="h-52 w-full object-cover rounded-xl transition-shadow duration-500 group-hover/card:shadow-xl group-hover/card:shadow-text-muted/10"
+                    loading="lazy"
+                  />
+                </ThreeDCardItem>
+
+                <!-- Footer -->
+                <div class="flex justify-between items-center mt-6">
+                  <ThreeDCardItem
+                    :translateZ="20"
+                    class="text-caption text-text-secondary hover:text-text-primary transition-colors duration-300"
+                  >
+                    Voir le projet →
+                  </ThreeDCardItem>
+                </div>
+
+              </ThreeDCardBody>
+            </ThreeDCardContainer>
+          </a>
         </div>
-      </a>
       </div>
     </div>
   </section>
